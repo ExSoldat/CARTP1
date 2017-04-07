@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+import Server.SessionCommandsManager;
 import Utils.LogUtils;
 
 public class RequestManager {
@@ -27,20 +28,20 @@ public class RequestManager {
 		}
 	}
 	
-	public void receive(boolean userIsConnected) {
-		if(userIsConnected) {
-		String input;
-		try {
-			//Ajouter un truc pour que ce soit bloquant ?
-			input = bfr.readLine();
-			responseTriggerer.triggerResponse(input);
-			logger.i("Message \"" + input + "\" received");
-		} catch (IOException e) {
-			logger.e("An error occured while trying to read request : ");
-			e.printStackTrace();
-		}
+	public void receive(SessionCommandsManager scm) {
+		if(scm.isRunning()) { //Previously it was user is connected
+			String input;
+			try {
+				//Ajouter un truc pour que ce soit bloquant ?
+				input = bfr.readLine();
+				responseTriggerer.triggerResponse(input, scm);
+				logger.i("Message \"" + input + "\" received");
+			} catch (IOException e) {
+				logger.e("An error occured while trying to read request : ");
+				e.printStackTrace();
+			}
 		} else {
-			responseTriggerer.triggerResponse("connection");
+			responseTriggerer.triggerResponse("connection", scm);
 		}
 	}
 }

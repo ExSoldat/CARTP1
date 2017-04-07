@@ -16,7 +16,8 @@ public class SessionsManager {
 	}
 	
 	public void addAddress(InetAddress address) {
-		inetaddresses.add(address);
+		if(isAlreadyConnected(address))
+			inetaddresses.add(address);
 	}
 	
 	public void removeAddress(InetAddress address) {

@@ -1,6 +1,7 @@
 package Server;
 import java.net.Socket;
 
+import Model.User;
 import RequestProcessing.RequestManager;
 import Utils.LogUtils;
 
@@ -9,8 +10,9 @@ public class SessionCommandsManager extends Thread {
 	private Socket connectionSocket;
 	private RequestManager requestManager;
 	private LogUtils logger = new LogUtils("SessionCommandsManager");
-	private boolean running;
+	private boolean running = false;
 	SessionsManager sManager = SessionsManager.getInstance();
+	private User loggedUser = null;
 
 	public SessionCommandsManager(Socket connectionSocket) {
 		super("SessionCommandsManager");
@@ -21,16 +23,23 @@ public class SessionCommandsManager extends Thread {
 	@Override
 	public void run() {
 		do {
-			if(sManager.isAlreadyConnected(connectionSocket.getInetAddress())) {
-				//Read the command then call CommandManager
-				requestManager.receive(true);
-			} else {
-				//Connection message
-				running = true;
-				sManager.addAddress(connectionSocket.getInetAddress());
-				requestManager.receive(false);
-			}
+			running=true;
+			sManager.addAddress(connectionSocket.getInetAddress());
+			requestManager.receive(this);			
 		} while(running);
+	}
+	
+	public boolean isRunning() {
+		return running;
+	}
+	
+	public void setIsRunning(boolean running) {
+		this.running = true;
+	}
+
+	public void setUser(User user) {
+		this.loggedUser = user;
+		
 	}
 	
 	

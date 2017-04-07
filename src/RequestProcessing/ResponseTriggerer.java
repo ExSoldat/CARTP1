@@ -5,6 +5,7 @@ import java.util.List;
 
 import CommandManagement.Command;
 import CommandManagement.CommandFactory;
+import Server.SessionCommandsManager;
 import Utils.LogUtils;
 
 public class ResponseTriggerer {
@@ -27,8 +28,7 @@ public class ResponseTriggerer {
 		
 	}
 
-	public void triggerResponse(String input) {
-		logger.i("RawInput : "  + input);
+	public void triggerResponse(String input, SessionCommandsManager scm) {
 		String[] splittedInput = input.split(" ");
 		String command = splittedInput[0];
 		String param = "";
@@ -42,7 +42,7 @@ public class ResponseTriggerer {
 		logger.i("Command received : " + command);
 		logger.i("Param received : " + param);
 		
-		Command c = cf.createCommand(command, param);
+		Command c = cf.createCommand(scm, command, param);
 		String response = c.execute();
 		responseManager.send(response);
 	}
