@@ -14,7 +14,11 @@ public class LogUtils {
 		w("INFO", infoMessage);
 	}
 	
-	public void w(String type, String message) {
+	private void w(String type, String message) {
 		System.out.println(tag + '-' + type.toUpperCase() + " : " + message);
+	}
+
+	public void c(String testedCondition, String conditionResult) {
+		w("DEBUGCONDITION-"+testedCondition.toUpperCase(), conditionResult);		
 	}
 }

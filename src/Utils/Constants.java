@@ -1,10 +1,7 @@
-package CommandManagement;
+package Utils;
 
-public interface Command {
-	//http://www.serv-u.com/respcode.asp?cmd=TYPE&prod=su
-	
-	//Should implement EPSV for passive data
-	
+public class Constants {
+	/*
 	public static final String CMD_USER = "USER";
 	public static final String CMD_PASSWORD = "PASS";
 	public static final String CMD_RETRIEVE = "retrieve";
@@ -12,10 +9,7 @@ public interface Command {
 	public static final String CMD_PWD = "PWD";
 	public static final String CMD_STORE = "store";
 	public static final String CMD_CONNECTION = "CONNECTION";
-	public static final String CMD_TYPE = "TYPE";
-	public static final String CMD_EXTENDED_DATAPORT = "EPRT";
-	public static final String CMD_LIST = "LIST";
+	*/
 	
-	public String execute();
-
+	public static final String WORK_DIRECTORY = "ftp_server_dir";
 }

@@ -40,7 +40,7 @@ public class TCPServer {
 			//Créer un thread par socket
 			connectionSocket = serverSocket.accept();
 			SessionCommandsManager scm = new SessionCommandsManager(connectionSocket);
-			scm.run();
+			scm.start();
 		}
 	}
 	

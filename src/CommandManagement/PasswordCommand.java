@@ -1,18 +1,21 @@
 package CommandManagement;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Model.User;
 import Server.SessionCommandsManager;
+import Utils.LogUtils;
 
 public class PasswordCommand implements Command {
-	ArrayList<User> users = new ArrayList<User>();
+	List<User> users = new ArrayList<User>();
 	String testedPassword;
 	private SessionCommandsManager scm;
+	private LogUtils logger = new LogUtils("PasswordCommand");
 	
 	public PasswordCommand(SessionCommandsManager scm, String param) {
-		users.add(new User("NoctisLucisCaelum", "azerty"));
-		users.add(new User("LunafreyaNoxFleuret", "azerty"));
+		logger.i("received param : " + param);
+		users = scm.getAvailableUsers();
 		this.scm = scm;
 		this.testedPassword = param;
 	}
@@ -20,12 +23,15 @@ public class PasswordCommand implements Command {
 	@Override
 	public String execute() {
 		for(User u : users) {
+			logger.c("password", u.getPassword().equals(testedPassword) + " : " + u.getPassword() + "/" + testedPassword);
 			if(u.getPassword().equals(testedPassword)) {
-				scm.setUser(new User(u.getUsername()));
+				scm.setUser(new User(u.getUsername(), u.getPassword()));
 				return "230 User logged in, proceed";
 			}
 				
 		}
+		scm.setIsRunning(false);
+		scm.setUser(null);
 		return "430 Invalid login";
 	}
 

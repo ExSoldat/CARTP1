@@ -6,6 +6,7 @@ import java.util.List;
 import CommandManagement.Command;
 import CommandManagement.CommandFactory;
 import Server.SessionCommandsManager;
+import Utils.Constants;
 import Utils.LogUtils;
 
 public class ResponseTriggerer {
@@ -19,12 +20,16 @@ public class ResponseTriggerer {
 		this.connectionSocket = connectionSocket;
 		this.responseManager = new ResponseManager(connectionSocket);
 		//PASSER DES CONSTANTES
-		validCommands.add("USER");
-		validCommands.add("password");
-		validCommands.add("retrieve");
-		validCommands.add("terminate");
-		validCommands.add("store");
-		validCommands.add("connection");
+		validCommands.add(Command.CMD_USER);
+		validCommands.add(Command.CMD_PASSWORD);
+		validCommands.add(Command.CMD_RETRIEVE);
+		validCommands.add(Command.CMD_TERMINATE);
+		validCommands.add(Command.CMD_PWD);
+		validCommands.add(Command.CMD_STORE);
+		validCommands.add(Command.CMD_TYPE);
+		validCommands.add(Command.CMD_EXTENDED_DATAPORT);
+		validCommands.add(Command.CMD_LIST);
+		validCommands.add(Command.CMD_CONNECTION);
 		
 	}
 
@@ -42,7 +47,7 @@ public class ResponseTriggerer {
 		logger.i("Command received : " + command);
 		logger.i("Param received : " + param);
 		
-		Command c = cf.createCommand(scm, command, param);
+		Command c = cf.createCommand(scm, command, param, responseManager);
 		String response = c.execute();
 		responseManager.send(response);
 	}
