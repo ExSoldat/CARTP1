@@ -1,3 +1,4 @@
+package main;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ public class Main {
 		LogUtils logger = new LogUtils("Main");		
 		TCPServer server = new TCPServer(1025);
 		try {
-			logger.i("Starting server...");
+			logger.i("Starting server on port 127.0.0.1:1025");
 			server.run();
 		} catch (IOException e) {
 			server.closeConnection();

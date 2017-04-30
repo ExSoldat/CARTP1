@@ -15,6 +15,7 @@ public interface Command {
 	public static final String CMD_TYPE = "TYPE";
 	public static final String CMD_EXTENDED_DATAPORT = "EPRT";
 	public static final String CMD_LIST = "LIST";
+	public static final String CMD_PASV = "PASV";
 	
 	public String execute();
 

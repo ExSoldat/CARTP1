@@ -1,8 +1,13 @@
 package Server;
 import java.io.File;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import Model.User;
 import RequestProcessing.RequestManager;
@@ -16,9 +21,10 @@ public class SessionCommandsManager extends Thread {
 	private boolean running = false;
 	SessionsManager sManager = SessionsManager.getInstance();
 	private User loggedUser = null;
-	private File file = null;
+	private ServerFile currentFile = null;
 	private List<User> availableUsers = new ArrayList<User>();
-	private Socket fileTransferSocket;
+	private DataTransferThread dataTransferSocket;
+	private int dataTransferSocketPort;
 
 	public SessionCommandsManager(Socket connectionSocket) {
 		super("SessionCommandsManager");
@@ -58,20 +64,54 @@ public class SessionCommandsManager extends Thread {
 		return availableUsers;
 	}
 	
-	public void setFile(File f) {
-		this.file = f;
+	public void setFile(ServerFile f) {
+		this.currentFile = f;
 	}
 	
 	public File getFile() {
-		return this.file;
+		return this.currentFile;
 	}
 
-	public Socket getFileTransferSocket() {
-		return fileTransferSocket;
+	public DataTransferThread getDataTransferSocket() {
+		return dataTransferSocket;
 	}
 
-	public void setDataport(Socket fileTransferSocket) {
-		this.fileTransferSocket = fileTransferSocket;
+	public void setDataTransferSocket(DataTransferThread dataTransferSocket) {
+		this.dataTransferSocket = dataTransferSocket;
+	}
+	
+	public boolean openFileTransferSocket() {
+		this.dataTransferSocket = null;
+		int count = 0;
+		Random r = new Random();
+		while (count < 10) {
+			//Open a random socket port if possible
+			this.dataTransferSocketPort = r.nextInt(2000);
+			try {
+				count++;
+				this.dataTransferSocket = new DataTransferThread(new ServerSocket(dataTransferSocketPort));
+				this.dataTransferSocket.start();
+				logger.i("Listening on port " + dataTransferSocketPort);
+				return true;
+			} catch (Exception e) {
+				logger.e("Unable to open a Socket on port " + dataTransferSocketPort + " trying with a different one ... count ="  + count);
+				e.printStackTrace();
+			}
+		}
+		logger.e("All attempts to open a ServerSocket failed.");
+		return false;
+	}
+
+	public int getFileTransferSocketPort() {
+		return this.dataTransferSocketPort;
+	}
+
+	public ArrayList<File> getCurrentDirFileList() throws Exception {
+		ArrayList<File> filesList = new ArrayList<File>();
+		if(currentFile != null) {
+			return ServerFile.getFilesList(currentFile);
+		} else 
+			throw new Exception("Current directory has not been set by PWD command");
 	}
 	
 	

@@ -28,6 +28,8 @@ public class ResponseTriggerer {
 		validCommands.add(Command.CMD_STORE);
 		validCommands.add(Command.CMD_TYPE);
 		validCommands.add(Command.CMD_EXTENDED_DATAPORT);
+		//validCommands.add(Command.CMD_PORT);
+		validCommands.add(Command.CMD_PASV);
 		validCommands.add(Command.CMD_LIST);
 		validCommands.add(Command.CMD_CONNECTION);
 		

@@ -17,11 +17,13 @@ public class CommandFactory {
 		case Command.CMD_PWD:
 			return new DirectoryCommand(scm, param);
 		case Command.CMD_TYPE:
-			return new TypeCommand(scm, param);
+			return new AnswerOnlyCommand(scm, param, "200 TYPE set to I");
 		case Command.CMD_EXTENDED_DATAPORT:
 			return new ExtendedDataportCommand(scm, param);
 		case Command.CMD_LIST:
 			return new ListCommand(scm, param, rManager);
+		case Command.CMD_PASV:
+			return new PASVCommand(scm, param);
 		case Command.CMD_RETRIEVE:
 			//return new RetrieveCommand(param);
 		case Command.CMD_STORE:
@@ -29,7 +31,7 @@ public class CommandFactory {
 		case Command.CMD_TERMINATE:
 			//return new TerminateCommand();
 		default :
-			return new UnknownCommand();
+			return new AnswerOnlyCommand(scm, param, "503 Unknown command");
 		}
 	}
 

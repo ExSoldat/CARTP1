@@ -21,7 +21,7 @@ public class ExtendedDataportCommand implements Command {
 	@Override
 	public String execute() {
 		if(dataport != null) {
-			scm.setDataport(dataport);
+			//scm.setFileTransferSocket(dataport);
 			return "200 port opened";
 		}
 		return "501 unable to create file transfert socket";
