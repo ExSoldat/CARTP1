@@ -10,13 +10,18 @@ import java.util.List;
 
 import utils.Logger;
 
+/**
+ * A utiliy class that allows to gather informations from the files and have a list of the files inside another file
+ * @author Mathieu
+ *
+ */
 public class FileUtils {
 	public static Logger logger = new Logger("FileUtils");
 	
-	/***
-	 * I don't handle the recursive param now
-	 * @param recursive
-	 * @return a list of files inside a directory
+	/**
+	 * A function used to get the files list in a directory
+	 * @param file the file where we want to do the list
+	 * @return a list of the files inside the directory
 	 */
 	public static ArrayList<File> getFilesList(File file) {
 		ArrayList<File> filesList = new ArrayList<File>();
@@ -27,6 +32,11 @@ public class FileUtils {
 		return filesList;
 	}
 	
+	/**
+	 * A function ro create a string that represents a file
+	 * @param f the file e want to format
+	 * @return a string representating this file
+	 */
 	public static String formatFileToAnswer(File f) {
 		String result = "";
 		result += f.isDirectory() ? "d" : "-";
@@ -47,6 +57,10 @@ public class FileUtils {
 		return result;
 	}
 	
+	/**
+	 * Unhandled
+	 * @return always the same string
+	 */
 	private static String formatPermissions() {
 		return "rwxrwxrwx";
 	}

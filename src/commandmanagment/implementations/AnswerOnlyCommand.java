@@ -4,6 +4,11 @@ import commandmanagment.Command;
 import server.SessionCommandsManager;
 import utils.Logger;
 
+/***
+ * Command used when nothing but an answer has to be sent back to the client side
+ * @author Mathieu
+ *
+ */
 public class AnswerOnlyCommand implements Command {
 
 	private SessionCommandsManager scm;

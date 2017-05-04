@@ -10,13 +10,18 @@ import commandmanagment.implementations.PASSCommand;
 import commandmanagment.implementations.RETRCommand;
 import commandmanagment.implementations.STORCommand;
 import commandmanagment.implementations.USERCommand;
-import requestprocessing.ResponseManager;
+import requestprocessing.Response;
 import server.SessionCommandsManager;
 import utils.Constants;
 
+/**
+ * A simple factory that creates the corresponding command object from the command we reeived
+ * @author Mathieu
+ *
+ */
 public class CommandFactory {
 
-	public Command createCommand(SessionCommandsManager scm, String command, String param, ResponseManager rManager) {
+	public Command createCommand(SessionCommandsManager scm, String command, String param, Response rManager) {
 		switch(command) {
 		case Command.CMD_CONNECTION:
 			return new ConnectionCommand(scm);

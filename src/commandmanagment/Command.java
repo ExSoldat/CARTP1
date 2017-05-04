@@ -2,7 +2,11 @@ package commandmanagment;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * The Command interface which stores some useful constants and a function that allows to get the commands list
+ * @author Mathieu
+ *
+ */
 public interface Command {
 	//http://www.serv-u.com/respcode.asp?cmd=TYPE&prod=su
 	

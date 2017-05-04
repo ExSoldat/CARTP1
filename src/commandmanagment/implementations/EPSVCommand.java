@@ -4,6 +4,11 @@ import commandmanagment.Command;
 import server.SessionCommandsManager;
 import utils.Logger;
 
+/**
+ * Unimplemented
+ * @author Mathieu
+ *
+ */
 public class EPSVCommand implements Command {
 
 	private SessionCommandsManager scm;

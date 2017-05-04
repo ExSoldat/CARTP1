@@ -1,2 +1,6 @@
 /server/
+/commandmanagment/
 /dataprocessing/
+/model/
+/requestprocessing/
+/utils/

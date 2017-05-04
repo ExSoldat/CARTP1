@@ -3,6 +3,11 @@ package commandmanagment.implementations;
 import commandmanagment.Command;
 import server.SessionCommandsManager;
 
+/***
+ * A command that is triggered when the client sends an empty message in the beginning
+ * @author Mathieu
+ *
+ */
 public class ConnectionCommand implements Command {
 	
 	private SessionCommandsManager scm;

@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * A simple user class
+ * @author Mathieu
+ *
+ */
 public class User {
 	private String username, password;
 

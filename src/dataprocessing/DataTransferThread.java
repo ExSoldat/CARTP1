@@ -11,6 +11,11 @@ import java.net.Socket;
 
 import utils.Logger;
 
+/**
+ * A Thread that handles the data transfer.
+ * @author Mathieu
+ *
+ */
 public class DataTransferThread extends Thread {
 	private OutputStream os;
 	private InputStream is;
@@ -20,16 +25,18 @@ public class DataTransferThread extends Thread {
 	private Socket connectionSocket;
 	private ServerSocket serverSocket;
 	
+	/**
+	 * The constructor, instanciating a socket
+	 * @param sSocket
+	 */
 	public DataTransferThread(ServerSocket sSocket) {
 		super("DataTransferThread");
 		this.serverSocket = sSocket;
 	}
 	
-	public DataTransferThread(Socket socket) {
-		super("DataTransferThread");
-		this.connectionSocket = socket;
-	}
-	
+	/**
+	 * The run function, that instanciate some useful variables for the data transfer when a message is accepted
+	 */
 	@Override
 	public void run() {
 		while(true) {
@@ -47,7 +54,10 @@ public class DataTransferThread extends Thread {
 		}
 	}
 	
-	
+	/**
+	 * A function to send a string message into the data socket
+	 * @param message the message to send
+	 */
 	public void send(String message) {
 		String output = message+"\r\n";
 		try {
@@ -59,6 +69,10 @@ public class DataTransferThread extends Thread {
 		}
 	}
 	
+	/**
+	 * A function to send a byte array into the data socket
+	 * @param message the message to send
+	 */
 	public void send(byte[] buffer) {
 		try {
 			dos.write(buffer);
@@ -69,8 +83,10 @@ public class DataTransferThread extends Thread {
 		}
 	}
 	
+	/**
+	 * A function used to completely close a socket
+	 */
 	public void close() {
-		
 		try {
 			//serverSocket.close();
 			connectionSocket.close();

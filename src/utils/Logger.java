@@ -11,17 +11,25 @@ public class Logger {
 		this.tag = classTag;
 	}
 	
+	/**
+	 * A function that sends an error message
+	 * @param errorMessage the message
+	 */
 	public void e(String errorMessage) {
 		_w("ERROR", errorMessage);
 	}
 	
+	/**
+	 * A function that sends an information message
+	 * @param infoMessage the message
+	 */
 	public void i(String infoMessage) {
 		_w("INFO", infoMessage);
 	}
 	
 	/**
 	 * A function that sends a warning message
-	 * @param infoMessage
+	 * @param warningMessage the message
 	 */
 	public void w(String warningMessage) {
 		_w("WARNING", warningMessage);
@@ -29,8 +37,8 @@ public class Logger {
 	
 	/***
 	 * A function that outputs a message and its type
-	 * @param type
-	 * @param message
+	 * @param type the type of the message
+	 * @param message the message
 	 */
 	private void _w(String type, String message) {
 		System.out.println(tag + '-' + type.toUpperCase() + " : " + message);

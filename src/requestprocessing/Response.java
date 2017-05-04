@@ -6,12 +6,21 @@ import java.net.Socket;
 
 import utils.Logger;
 
-public class ResponseManager {
+/**
+ * A class that is used to send responses to the client side
+ * @author Mathieu
+ *
+ */
+public class Response {
 	private OutputStream os;
 	private DataOutputStream dos;
 	private Logger logger = new Logger("ResponseManager");
 	
-	public ResponseManager(Socket connectionSocket) {
+	/**
+	 * The constructor initiating the stream where we will be sending our responses using the data from the socket
+	 * @param connectionSocket
+	 */
+	public Response(Socket connectionSocket) {
 		try {
 			os = connectionSocket.getOutputStream();
 			dos = new DataOutputStream(os);	
@@ -21,6 +30,10 @@ public class ResponseManager {
 		}
 	}
 	
+	/**
+	 * Sending a message to the stream
+	 * @param message
+	 */
 	public void send(String message) {
 		String output = message+"\r\n";
 		try {

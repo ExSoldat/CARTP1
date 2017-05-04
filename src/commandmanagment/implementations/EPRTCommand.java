@@ -8,6 +8,11 @@ import commandmanagment.Command;
 import server.SessionCommandsManager;
 import utils.Logger;
 
+/**
+ * Unimplemented
+ * @author Mathieu
+ *
+ */
 public class EPRTCommand implements Command {
 
 	
