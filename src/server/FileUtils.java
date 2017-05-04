@@ -14,7 +14,7 @@ public class FileUtils {
 	public static Logger logger = new Logger("FileUtils");
 	
 	/***
-	 * I don't handle the recusrive param now
+	 * I don't handle the recursive param now
 	 * @param recursive
 	 * @return a list of files inside a directory
 	 */

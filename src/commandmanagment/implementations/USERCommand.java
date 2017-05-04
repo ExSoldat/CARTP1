@@ -12,7 +12,7 @@ public class USERCommand implements Command {
 	List<User> users;
 	String testedUsername;
 	private SessionCommandsManager scm;
-	private Logger logger = new Logger("UsernameCommand");
+	private Logger logger = new Logger("USERCommand");
 	
 	public USERCommand(SessionCommandsManager scm, String param) {
 		this.testedUsername = param;

@@ -26,6 +26,7 @@ public class SessionCommandsManager extends Thread {
 	private List<User> availableUsers = new ArrayList<User>();
 	private DataTransferThread dataTransferThread;
 	private int dataTransferSocketPort;
+	private boolean active = false;
 
 	public SessionCommandsManager(Socket connectionSocket) {
 		super("SessionCommandsManager");
@@ -114,4 +115,12 @@ public class SessionCommandsManager extends Thread {
 	public void setDataTransferThread(DataTransferThread dataTransferThread) {
 		this.dataTransferThread = dataTransferThread;
 	}	
+	
+	public void setActive(boolean a) {
+		this.active = false;
+	}
+	
+	public boolean isActive() {
+		return this.active;
+	}
 }

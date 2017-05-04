@@ -12,7 +12,7 @@ import utils.Logger;
 public class LISTCommand implements Command {
 	private SessionCommandsManager scm;
 	private ResponseManager responseManager;
-	private Logger logger = new Logger("ListCommand");
+	private Logger logger = new Logger("LISTCommand");
 	
 	public LISTCommand(SessionCommandsManager scm, String param, ResponseManager rManager) {
 		this.scm = scm;

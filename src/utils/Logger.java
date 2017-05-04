@@ -1,5 +1,10 @@
 package utils;
 
+/***
+ * A class that helps developpers to log things.
+ * @author Mathieu
+ *
+ */
 public class Logger {
 	private String tag = "Undefined";
 	public Logger(String classTag) {
@@ -14,10 +19,19 @@ public class Logger {
 		_w("INFO", infoMessage);
 	}
 	
-	public void w(String infoMessage) {
-		_w("WARNING", infoMessage);
+	/**
+	 * A function that sends a warning message
+	 * @param infoMessage
+	 */
+	public void w(String warningMessage) {
+		_w("WARNING", warningMessage);
 	}
 	
+	/***
+	 * A function that outputs a message and its type
+	 * @param type
+	 * @param message
+	 */
 	private void _w(String type, String message) {
 		System.out.println(tag + '-' + type.toUpperCase() + " : " + message);
 	}

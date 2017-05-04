@@ -16,13 +16,18 @@ public class DataTransferThread extends Thread {
 	private InputStream is;
 	private DataInputStream dis;
 	private DataOutputStream dos;
-	private Logger logger = new Logger("DataTransferSocket");
+	private Logger logger = new Logger("DataTransferThread");
 	private Socket connectionSocket;
 	private ServerSocket serverSocket;
 	
 	public DataTransferThread(ServerSocket sSocket) {
 		super("DataTransferThread");
 		this.serverSocket = sSocket;
+	}
+	
+	public DataTransferThread(Socket socket) {
+		super("DataTransferThread");
+		this.connectionSocket = socket;
 	}
 	
 	@Override

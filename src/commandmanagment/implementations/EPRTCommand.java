@@ -12,7 +12,7 @@ public class EPRTCommand implements Command {
 
 	
 	private SessionCommandsManager scm;
-	private Logger logger = new Logger("ExtendedDataportCommand");
+	private Logger logger = new Logger("EPRTCommand");
 	private int dataport;
 	
 	public EPRTCommand(SessionCommandsManager scm, String param) {

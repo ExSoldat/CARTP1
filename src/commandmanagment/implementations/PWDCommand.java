@@ -11,7 +11,7 @@ import utils.Logger;
 public class PWDCommand implements Command {
 
 	private SessionCommandsManager scm;
-	private Logger logger = new Logger("DirectoryCommand");
+	private Logger logger = new Logger("PWDCommand");
 	
 	public PWDCommand(SessionCommandsManager scm, String param) {
 		this.scm = scm;

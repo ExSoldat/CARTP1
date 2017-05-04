@@ -12,7 +12,7 @@ public class PASSCommand implements Command {
 	List<User> users = new ArrayList<User>();
 	String testedPassword;
 	private SessionCommandsManager scm;
-	private Logger logger = new Logger("PasswordCommand");
+	private Logger logger = new Logger("PASSCommand");
 	
 	public PASSCommand(SessionCommandsManager scm, String param) {
 		logger.i("received param : " + param);
