@@ -23,12 +23,11 @@ public class PasswordCommand implements Command {
 	@Override
 	public String execute() {
 		for(User u : users) {
-			logger.c("password", u.getPassword().equals(testedPassword) + " : " + u.getPassword() + "/" + testedPassword);
-			if(u.getPassword().equals(testedPassword)) {
+			logger.c("password",(u.getUsername().equals(scm.getUser().getUsername()) && u.getPassword().equals(testedPassword)) + " : " + u.getPassword() + "/" + testedPassword);
+			if(u.getUsername().equals(scm.getUser().getUsername()) && u.getPassword().equals(testedPassword)) {
 				scm.setUser(new User(u.getUsername(), u.getPassword()));
 				return "230 User logged in, proceed";
 			}
-				
 		}
 		scm.setIsRunning(false);
 		scm.setUser(null);

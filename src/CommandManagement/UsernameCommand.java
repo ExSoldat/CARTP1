@@ -17,6 +17,7 @@ public class UsernameCommand implements Command {
 		this.testedUsername = param;
 		this.scm = scm;
 		this.users = scm.getAvailableUsers();
+		this.scm.setUser(null);
 	}
 
 	@Override

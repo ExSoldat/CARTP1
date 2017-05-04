@@ -19,19 +19,7 @@ public class ResponseTriggerer {
 	public ResponseTriggerer(Socket connectionSocket) {
 		this.connectionSocket = connectionSocket;
 		this.responseManager = new ResponseManager(connectionSocket);
-		//PASSER DES CONSTANTES
-		validCommands.add(Command.CMD_USER);
-		validCommands.add(Command.CMD_PASSWORD);
-		validCommands.add(Command.CMD_RETRIEVE);
-		validCommands.add(Command.CMD_TERMINATE);
-		validCommands.add(Command.CMD_PWD);
-		validCommands.add(Command.CMD_STORE);
-		validCommands.add(Command.CMD_TYPE);
-		validCommands.add(Command.CMD_EXTENDED_DATAPORT);
-		//validCommands.add(Command.CMD_PORT);
-		validCommands.add(Command.CMD_PASV);
-		validCommands.add(Command.CMD_LIST);
-		validCommands.add(Command.CMD_CONNECTION);
+		validCommands = Command.getCommandsList();
 		
 	}
 

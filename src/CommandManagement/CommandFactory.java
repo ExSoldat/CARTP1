@@ -24,10 +24,12 @@ public class CommandFactory {
 			return new ListCommand(scm, param, rManager);
 		case Command.CMD_PASV:
 			return new PASVCommand(scm, param);
+		case Command.CMD_EPSV:
+			return new EPSVCommand(scm, param);
 		case Command.CMD_RETRIEVE:
-			//return new RetrieveCommand(param);
-		case Command.CMD_STORE:
-			//return new StoreCommand(param);
+			return new RETRCommand(scm, param);
+		case Command.CMD_STOR:
+			return new STORCommand(scm, param);
 		case Command.CMD_TERMINATE:
 			//return new TerminateCommand();
 		default :

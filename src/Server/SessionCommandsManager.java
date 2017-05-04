@@ -31,7 +31,7 @@ public class SessionCommandsManager extends Thread {
 		requestManager= new RequestManager(connectionSocket);
 		this.connectionSocket = connectionSocket;	
 		availableUsers.add(new User("NoctisLucisCaelum", "azerty"));
-		availableUsers.add(new User("LunafreyaNoxFleuret", "azerty"));
+		availableUsers.add(new User("LunafreyaNoxFleuret", "azertyu"));
 	}
 	
 	@Override
@@ -80,6 +80,21 @@ public class SessionCommandsManager extends Thread {
 		this.dataTransferSocket = dataTransferSocket;
 	}
 	
+	public boolean openFileTransferSocket(int p) {
+		this.dataTransferSocket = null;
+		this.dataTransferSocketPort = p;
+		try {
+			this.dataTransferSocket = new DataTransferThread(new ServerSocket(dataTransferSocketPort));
+			this.dataTransferSocket.start();
+			logger.i("Listening on port " + dataTransferSocketPort);
+			return true;
+		} catch (Exception e) {
+			logger.e("An error occured while opening a FileTransferSocket");
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public boolean openFileTransferSocket() {
 		this.dataTransferSocket = null;
 		int count = 0;
@@ -113,6 +128,8 @@ public class SessionCommandsManager extends Thread {
 		} else 
 			throw new Exception("Current directory has not been set by PWD command");
 	}
+
+	
 	
 	
 	

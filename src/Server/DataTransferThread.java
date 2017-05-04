@@ -1,7 +1,10 @@
 package Server;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -10,6 +13,8 @@ import Utils.LogUtils;
 
 public class DataTransferThread extends Thread {
 	private OutputStream os;
+	private InputStream is;
+	private DataInputStream dis;
 	private DataOutputStream dos;
 	private LogUtils logger = new LogUtils("DataTransferSocket");
 	private Socket connectionSocket;
@@ -26,6 +31,8 @@ public class DataTransferThread extends Thread {
 			try {
 				connectionSocket = serverSocket.accept();
 				os = connectionSocket.getOutputStream();
+				is = connectionSocket.getInputStream();
+				dis = new DataInputStream(is);
 				dos = new DataOutputStream(os);
 				logger.i("Connection opened");
 			} catch (IOException e) {
@@ -47,6 +54,16 @@ public class DataTransferThread extends Thread {
 		}
 	}
 	
+	public void send(byte[] buffer) {
+		try {
+			dos.write(buffer);
+			logger.i("Message sent");
+		} catch (IOException e) {
+			logger.e("An error occured while trying to write response : ");
+			e.printStackTrace();
+		}
+	}
+	
 	public void close() {
 		
 		try {
@@ -54,6 +71,8 @@ public class DataTransferThread extends Thread {
 			connectionSocket.close();
 			os.close();
 			dos.close();
+			is.close();
+			dis.close();
 		} catch (IOException e) {
 			logger.e("Unable to close the data transfer connection");
 			e.printStackTrace();
@@ -63,6 +82,10 @@ public class DataTransferThread extends Thread {
 	
 	public Socket getSocket() {
 		return connectionSocket;
+	}
+
+	public DataInputStream getInputStream() {
+		return dis;
 	}
 
 }
