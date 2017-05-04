@@ -2,18 +2,18 @@ package main;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import Server.TCPServer;
-import Utils.LogUtils;
+import server.TCPServer;
+import utils.Logger;
 
 public class Main {
 
-	//TODO : LIST command, following this thread : http://stackoverflow.com/questions/26980284/implementing-own-ftp-server-response-on-list-command
-	//Create new methods in the Socket class for datatransfer
 	public static void main(String[] args) {
-		LogUtils logger = new LogUtils("Main");		
+		Logger logger = new Logger("Main");		
 		TCPServer server = new TCPServer(1025);
 		try {
 			logger.i("Starting server on port 127.0.0.1:1025");
+			logger.w("Active mode not supported yet");
+			logger.w("IPV6 not supported yet");
 			server.run();
 		} catch (IOException e) {
 			server.closeConnection();
